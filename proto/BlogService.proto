@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "./;proto";
+
+option java_multiple_files = true;
+option java_package = "com.example.wwy_blog.grpc.blog";
+option java_outer_classname = "BlogProto";
+
+package proto;
+
+service BlogService {
+  rpc GetBlogById(BlogRequest) returns (BlogResponse) {}
+
+  rpc GetAllBlogs(BlogsRequest) returns (BlogsResponse) {}
+}
+
+message BlogRequest {
+  int32 id = 1;
+}
+
+message BlogResponse {
+  int32 id = 1;
+  string title = 2;
+  string category = 3;
+  string context = 4;
+  string createTime = 5;
+}
+
+message BlogsRequest {
+
+}
+
+message BlogsResponse{
+  repeated BlogResponse blogs = 1;
+}
